@@ -9,7 +9,8 @@ let answerValues = document.getElementById("answerValues"),
     X = 0,
     Y = 0,
     R = 1,
-    statusBar = document.getElementById("status")
+    statusBar = document.getElementById("status"),
+    statusImg = document.getElementById("cat"),
     arrayButton=document.getElementsByClassName("buttonR");
 let buttonItems=[].slice.call(arrayButton);
 
@@ -84,8 +85,10 @@ function processSubmit() {
     fetch("scripts/main.php" + request, {
         method: "GET",
         headers: {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
-    }).then(response => response.json()).then(function (serverAnswer) {
-
+    }).then(function (response) {
+        statusImg.setAttribute("src", "https://http.cat/" + response.status + ".jpg")
+        return response.json()
+    }).then(function (serverAnswer) {
         let result = "<tr>";
         for (let [index, row] of Object.entries(serverAnswer).reverse()) {
             for (let [key, value] of Object.entries(row)) {
@@ -97,14 +100,11 @@ function processSubmit() {
                         color = "red"
                     value = "<span style='color: " + color + "'>" + value + "</span>";
                 }
-
                 result += "<td>" + value + "</td>"
             }
             result += "</tr>";
         }
-
         answerValues.innerHTML = result;
-        errorX.setCustomValidity('SHIT')
     }).catch(err => console.log(err));
 }
 
