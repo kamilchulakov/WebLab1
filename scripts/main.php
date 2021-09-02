@@ -59,6 +59,5 @@ $_SESSION["tableRows"][] = array(
     'currentTime' => $currentTime,
     'benchmarkTime' => $benchmarkTime
 );
-//echo json_encode_for_helios($_SESSION["tableRows"]);
 echo json_encode($_SESSION["tableRows"]);
 
