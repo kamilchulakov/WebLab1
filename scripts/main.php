@@ -4,9 +4,9 @@ error_reporting(0);
 function isDataValid($x, $y, $r)
 {
     return
-        in_array($x, array(-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2), false) &&
+        in_array($x, array(-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2)) &&
         is_numeric($y) && $y > -3 && $y < 5 &&
-        in_array($r, array(1, 2, 3, 4, 5), false);
+        in_array($r, array(1, 2, 3, 4, 5));
 }
 
 function atQuarterCircle($x, $y, $r)
